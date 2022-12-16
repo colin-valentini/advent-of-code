@@ -10,4 +10,5 @@ var input string
 
 func TestSolver(t *testing.T) {
 	// TODO
+	_ = input
 }

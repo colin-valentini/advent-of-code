@@ -1,6 +1,6 @@
 package day2
 
-type Solver struct {}
+type Solver struct{}
 
 func NewSolver() *Solver {
 	return &Solver{}
