@@ -3,23 +3,25 @@ package day2
 import (
 	"fmt"
 	"strings"
+
+	"colin-valentini.com/advent-of-code/aoc2022/challenge"
 )
 
-type challengePart int
+// type challengePart int
 
-const (
-	part1 challengePart = iota
-	part2
-)
+// const (
+// 	part1 challengePart = iota
+// 	part2
+// )
 
 // Solver solves the Day 2 challenge of Advent of Code 2022.
 type Solver struct {
 	input string
-	part  challengePart
+	part  challenge.Part
 }
 
 // NewSolver returns a new instance of Solver.
-func NewSolver(input string, part challengePart) *Solver {
+func NewSolver(input string, part challenge.Part) *Solver {
 	return &Solver{input: input, part: part}
 }
 
@@ -52,7 +54,7 @@ func (s *Solver) parseOpponent(str string) handShape {
 
 func (s *Solver) parsePlay(str string, oppShape handShape) handShape {
 	char := []rune(str)[0]
-	if s.part == part1 {
+	if s.part == challenge.Part1 {
 		return handShape(char - 'X')
 	}
 	switch char {
