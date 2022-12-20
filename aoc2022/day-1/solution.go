@@ -68,15 +68,6 @@ func (e *elfCalories) maxCalories() int {
 	return int(max)
 }
 
-// String returns the string representation of the elfCalories type.
-func (e *elfCalories) String() string {
-	strs := make([]string, len(e.elves))
-	for i, elf := range e.elves {
-		strs[i] = elf.String()
-	}
-	return strings.Join(strs, "\n\n")
-}
-
 type elf struct {
 	calories []uint64
 }
@@ -91,13 +82,4 @@ func (e *elf) totalCalories() uint64 {
 		total += cal
 	}
 	return total
-}
-
-// String returns the string representation of the elf type.
-func (e *elf) String() string {
-	strs := make([]string, len(e.calories))
-	for i, cal := range e.calories {
-		strs[i] = strconv.FormatUint(cal, 10)
-	}
-	return strings.Join(strs, "\n")
 }
