@@ -7,13 +7,6 @@ import (
 	"colin-valentini.com/advent-of-code/aoc2022/challenge"
 )
 
-// type challengePart int
-
-// const (
-// 	part1 challengePart = iota
-// 	part2
-// )
-
 // Solver solves the Day 2 challenge of Advent of Code 2022.
 type Solver struct {
 	input string

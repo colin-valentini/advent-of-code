@@ -6,11 +6,9 @@ import (
 
 	"colin-valentini.com/advent-of-code/aoc2022/challenge"
 	"github.com/stretchr/testify/assert"
-	// "github.com/stretchr/testify/require"
 )
 
-// Note: input is generated from the Advent of Code site
-// and is user specific.
+// Note: input is generated from the Advent of Code site and is user specific.
 // See https://adventofcode.com/2022/day/3/input.
 
 //go:embed input.txt
