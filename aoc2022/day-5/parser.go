@@ -66,7 +66,7 @@ func (p *craneParser) parse(lines []string) (*crane, error) {
 	for i := range positions {
 		stacks[i] = newStack([]crate{})
 	}
-	for i := len(lines)-2; i >= 0; i-- {
+	for i := len(lines) - 2; i >= 0; i-- {
 		line := lines[i]
 		for i, pos := range positions {
 			char := line[pos]
