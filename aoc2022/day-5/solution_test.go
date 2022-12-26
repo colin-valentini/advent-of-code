@@ -31,3 +31,11 @@ func TestSolver(t *testing.T) {
 		assert.Equal(t, "VWLCWGSDQ", solution)
 	})
 }
+
+func BenchmarkSolver(b *testing.B) {
+	b.Run("Input", func(b *testing.B) {
+		for n := 0; n < b.N; n++ {
+			_, _ = NewSolver(input, challenge.Part1).Solve()
+		}
+	})
+}

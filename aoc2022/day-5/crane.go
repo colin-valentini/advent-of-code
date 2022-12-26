@@ -16,13 +16,13 @@ func newCrane(stacks []*stack) *crane {
 	return &crane{stacks: stacks}
 }
 
-func (c *crane) move(inst instruction) error {
-	for i := 0; i < inst.num; i++ {
-		crate, ok := c.stacks[inst.from].pop()
+func (c *crane) apply(m *move) error {
+	for i := 0; i < m.num; i++ {
+		crate, ok := c.stacks[m.from].pop()
 		if !ok {
 			return errInvalidMove
 		}
-		c.stacks[inst.to].push(crate)
+		c.stacks[m.to].push(crate)
 	}
 	return nil
 }
@@ -72,12 +72,12 @@ func (s *stack) peek() (crate, bool) {
 
 type crate rune
 
-type instruction struct {
+type move struct {
 	num  int
 	from int
 	to   int
 }
 
-func newInstruction(num, from, to int) instruction {
-	return instruction{num: num, from: from, to: to}
+func newMove(num, from, to int) *move {
+	return &move{num: num, from: from, to: to}
 }
