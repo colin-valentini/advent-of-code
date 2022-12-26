@@ -2,6 +2,8 @@ package day5
 
 import (
 	"errors"
+
+	"colin-valentini.com/advent-of-code/aoc2022/challenge"
 )
 
 var errInvalidMove = errors.New("invalid instruction")
@@ -16,13 +18,24 @@ func newCrane(stacks []*stack) *crane {
 	return &crane{stacks: stacks}
 }
 
-func (c *crane) apply(m *move) error {
+func (c *crane) apply(m *move, part challenge.Part) error {
+	tmp := newStack(make([]crate, 0, m.num))
 	for i := 0; i < m.num; i++ {
 		crate, ok := c.stacks[m.from].pop()
 		if !ok {
 			return errInvalidMove
 		}
-		c.stacks[m.to].push(crate)
+		if part == challenge.Part2 {
+			tmp.push(crate)
+		} else {
+			c.stacks[m.to].push(crate)
+		}
+	}
+	if part == challenge.Part2 {
+		for len(tmp.crates) > 0 {
+			crate, _ := tmp.pop()
+			c.stacks[m.to].push(crate)
+		}
 	}
 	return nil
 }

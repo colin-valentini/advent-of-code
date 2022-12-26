@@ -26,7 +26,7 @@ func (s *Solver) Solve() (string, error) {
 		return "", fmt.Errorf("parsing input: %w", err)
 	}
 	for i, m := range s.moves {
-		if err := s.crane.apply(m); err != nil {
+		if err := s.crane.apply(m, s.part); err != nil {
 			return "", fmt.Errorf("applying move %d", i)
 		}
 	}

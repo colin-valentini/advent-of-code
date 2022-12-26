@@ -19,16 +19,28 @@ var input string
 var example string
 
 func TestSolver(t *testing.T) {
-	t.Run("Example", func(t *testing.T) {
+	t.Run("Example Part 1", func(t *testing.T) {
 		solution, err := NewSolver(example, challenge.Part1).Solve()
 		require.NoError(t, err)
 		assert.Equal(t, "CMZ", solution)
 	})
 
-	t.Run("Input", func(t *testing.T) {
+	t.Run("Example Part 2", func(t *testing.T) {
+		solution, err := NewSolver(example, challenge.Part2).Solve()
+		require.NoError(t, err)
+		assert.Equal(t, "MCD", solution)
+	})
+
+	t.Run("Input Part 1", func(t *testing.T) {
 		solution, err := NewSolver(input, challenge.Part1).Solve()
 		require.NoError(t, err)
 		assert.Equal(t, "VWLCWGSDQ", solution)
+	})
+
+	t.Run("Input Part 2", func(t *testing.T) {
+		solution, err := NewSolver(input, challenge.Part2).Solve()
+		require.NoError(t, err)
+		assert.Equal(t, "TCGLQSLPW", solution)
 	})
 }
 
