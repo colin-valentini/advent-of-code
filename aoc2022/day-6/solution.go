@@ -7,18 +7,29 @@ type Solver struct {
 	part  challenge.Part
 }
 
-func newSolver(input string, part challenge.Part) *Solver {
+func NewSolver(input string, part challenge.Part) *Solver {
 	return &Solver{input: input, part: part}
 }
 
 func (s *Solver) Solve() int {
+	// TODO: Do something smarter. Might want to jump ahead
+	// sufficiently far when we know there is going to be a
+	// duplicate character in the next window.
 	bytes := []byte(s.input)
-	for i := 4; i <= len(bytes); i++ {
-		if newWindow(bytes[i-4 : i]).isMarker() {
+	winSize := s.windowSize()
+	for i := winSize; i <= len(bytes); i++ {
+		if newWindow(bytes[i-winSize : i]).isMarker() {
 			return i
 		}
 	}
 	return -1
+}
+
+func (s *Solver) windowSize() int {
+	if s.part == challenge.Part1 {
+		return 4
+	}
+	return 14
 }
 
 type window struct {

@@ -17,24 +17,42 @@ var input string
 
 func TestSolver(t *testing.T) {
 	examples := []struct {
-		in   string
-		want int
+		in    string
+		part1 int
+		part2 int
 	}{
-		{in: "mjqjpqmgbljsphdztnvjfqwrcgsmlb", want: 7},
-		{in: "bvwbjplbgvbhsrlpgdmjqwftvncz", want: 5},
-		{in: "nppdvjthqldpwncqszvftbrmjlhg", want: 6},
-		{in: "nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg", want: 10},
-		{in: "zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw", want: 11},
+		{in: "mjqjpqmgbljsphdztnvjfqwrcgsmlb", part1: 7, part2: 19},
+		{in: "bvwbjplbgvbhsrlpgdmjqwftvncz", part1: 5, part2: 23},
+		{in: "nppdvjthqldpwncqszvftbrmjlhg", part1: 6, part2: 23},
+		{in: "nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg", part1: 10, part2: 29},
+		{in: "zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw", part1: 11, part2: 26},
 	}
 	for i, example := range examples {
-		t.Run(fmt.Sprintf("Example %d", i), func(t *testing.T) {
-			got := newSolver(example.in, challenge.Part1).Solve()
-			assert.Equal(t, example.want, got)
+		t.Run(fmt.Sprintf("Example %d: Part 1", i), func(t *testing.T) {
+			got := NewSolver(example.in, challenge.Part1).Solve()
+			assert.Equal(t, example.part1, got)
+		})
+		t.Run(fmt.Sprintf("Example %d: Part 2", i), func(t *testing.T) {
+			got := NewSolver(example.in, challenge.Part2).Solve()
+			assert.Equal(t, example.part2, got)
 		})
 	}
 
-	t.Run("Input", func(t *testing.T) {
-		got := newSolver(input, challenge.Part1).Solve()
+	t.Run("Input: Part 1", func(t *testing.T) {
+		got := NewSolver(input, challenge.Part1).Solve()
 		assert.Equal(t, 1848, got)
+	})
+
+	t.Run("Input: Part 2", func(t *testing.T) {
+		got := NewSolver(input, challenge.Part2).Solve()
+		assert.Equal(t, 2308, got)
+	})
+}
+
+func BenchmarkSolver(b *testing.B) {
+	b.Run("Input", func(b *testing.B) {
+		for n := 0; n < b.N; n++ {
+			_ = NewSolver(input, challenge.Part2).Solve()
+		}
 	})
 }
